@@ -1,0 +1,171 @@
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif; /* Changed font to Inter for a modern look */
+    background-color: #0d0d0d; /* Darker background for better contrast */
+    color: #e0e0e0; /* Light text color */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; /* Added padding for a more spacious feel */
+    background: linear-gradient(90deg, #6a82fb, #fc5c7d); /* Modern gradient */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Softer shadow */
+}
+
+h1 {
+    font-size: 36px; /* Increased font size for prominence */
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+}
+
+.btn {
+    background-color: #fc5c7d; /* Updated button color */
+    color: #ffffff; /* Changed text color to white */
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Softer shadow */
+}
+
+.btn:hover {
+    background-color: #6a82fb; /* Darker shade on hover */
+    transform: translateY(-3px);
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 40px; /* Increased padding for spaciousness */
+}
+
+/* Statistics Section */
+.statistics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px; /* Increased gap for better separation */
+    margin-top: 30px;
+}
+
+.stat-card {
+    background-color: #1e1e1e; /* Darker card background */
+    border-radius: 15px; /* Softer corners */
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Softer shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.stat-card h3 {
+    margin: 15px 0;
+    font-size: 30px; /* Slightly larger font size */
+    font-weight: 700;
+}
+
+.stat-card p {
+    font-size: 18px;
+    color: #b0b0b0; /* Softer text color */
+}
+
+/* Chart Section */
+.chart-container {
+    margin: 30px 0;
+    height: 450px;
+    background-color: #1e1e1e; /* Consistent dark background */
+    border-radius: 15px; /* Softer corners */
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Song List */
+.song-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+}
+
+.song-list li {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a2a2a; /* Darker background for list items */
+    padding: 15px;
+    border-radius: 15px; /* Softer corners */
+    transition: background-color 0.3s, transform 0.2s; /* Added transform on hover */
+}
+
+.song-list li:hover {
+    background-color: #3c3c3c; /* Lighter on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.song-list button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: opacity 0.3s, transform  0.2s; /* Added transform for button hover */
+}
+
+.song-list button.edit-btn {
+    background-color: #6a82fb; /* Updated button color */
+}
+
+.song-list button:hover {
+    opacity: 0.9;
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Form Container */
+.form-container {
+    background-color: #2a2a2a; /* Consistent dark background */
+    border-radius: 15px; /* Softer corners */
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.form-container h2 {
+    font-size: 28px; /* Slightly larger font size */
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #555; /* Consistent border color */
+    border-radius: 8px;
+    background-color: #444; /* Dark background for inputs */
+    color: #ffffff; /* Light text color */
+    margin-bottom: 20px;
+    transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+input:focus {
+    border-color: #fc5c7d; /* Updated focus color */
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .statistics {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}

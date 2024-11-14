@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Deletion</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>Confirm Deletion</h1>
+        <a href="{% url 'admin_dashboard' %}" class="btn">Back to Dashboard</a>
+    </header>
+
+    <div class="form-container">
+        <h2>Are you sure you want to delete the song "{{ song.title }}" by "{{ song.artist }}"?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Yes, Delete</button>
+        </form>
+        <a href="{% url 'admin_dashboard' %}" class="btn">Cancel</a>
+    </div>
+
+</body>
+</html>

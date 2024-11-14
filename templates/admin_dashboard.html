@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'adminstyles.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Admin Dashboard</h1>
+        <a href="{% url 'logout' %}" class="btn">Logout</a>
+    </header>
+
+    <div class="container">
+        <div class="statistics">
+            <div class="stat-card">
+                <h3>Artists Count</h3>
+                <p>{{ artists_count }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Songs Count</h3>
+                <p>{{ songs_count }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Users Count</h3>
+                <p>{{ users_count }}</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="myBarChart"></canvas>
+        </div>
+
+        <div class="form-container">
+            <h2>Upload New Song</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn">Upload Song</button>
+            </form>
+        </div>
+
+        <h2>All Songs</h2>
+        <ul class="song-list">
+            {% for song in songs %}
+                <li>
+                    <span>{{ song.title }} - {{ song.artist }}</span>
+                    <div>
+                        <a href="{% url 'edit_song' song.id %}" class="btn edit-btn">Edit</a>
+                        <form method="post" action="{% url 'delete_song' song.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myBarChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Artists', 'Songs', 'Users'],
+                datasets: [{
+                    label: 'Count',
+                    data: [{{ artists_count }}, {{ songs_count }}, {{ users_count }}],
+                    backgroundColor: '#0d7377',
+                    borderColor: '#14ffec',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, ticks: { color: '#e0e0e0' } },
+                    x: { ticks: { color: '#e0e0e0' } }
+                },
+                plugins: {
+                    legend: { labels: { color: '#e0e0e0' } }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

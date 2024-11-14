@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .bg-dark {
+            background-color: #1e1e1e;
+        }
+        .text-primary {
+            color: #1db954;
+        }
+        .text-secondary {
+            color: #03dac6;
+        }
+        .hover-bg-primary:hover {
+            background-color: #1db954;
+        }
+        .hover-bg-secondary:hover {
+            background-color: #03dac6;
+        }
+        .rounded-full {
+            border-radius: 9999px;
+        }
+        .shadow-lg {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        textarea {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #444;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+        }
+        input::placeholder {
+            color: #888;
+        }
+        input:focus {
+            border-color: #1db954;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 mt-8">
+        <h2 class="text-2xl font-semibold text-primary mb-4">Update Your Profile</h2>
+
+        <form method="POST" class="bg-dark p-6 rounded-lg shadow-lg space-y-6">
+            {% csrf_token %}
+            
+            <div class="space-y-4">
+                {{ form.as_p }} <!-- Render form fields with updated styles -->
+            </div>        
+            <div class="flex justify-between items-center">
+                <!-- Changed text-black to text-white -->
+                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-full hover-bg-primary transition duration-200">
+                    Save Changes
+                </button>
+        
+                <a href="{% url 'home' %}" class="text-secondary hover:text-white transition duration-200">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+            </div>
+        </form>
+        
+    </div>
+</body>
+</html>
