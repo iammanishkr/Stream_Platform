@@ -99,3 +99,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 # Increase maximum file upload size to 100MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB in bytes
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB in bytes
+
+ROOT_URLCONF = 'stream_music.urls'
+
+WSGI_APPLICATION = 'stream_music.wsgi.application'
