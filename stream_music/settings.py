@@ -102,3 +102,12 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB in bytes
 ROOT_URLCONF = 'stream_music.urls'
 
 WSGI_APPLICATION = 'stream_music.wsgi.application'
+
+
+import os
+from django.core.management import call_command
+
+# Check if you're in development and not in production (optional safety check)
+if os.environ.get('DJANGO_DEVELOPMENT') == 'True':  # You can use an environment variable for this
+    call_command('createsuperuser', interactive=False, username='admin', email='admin@example.com', password='123456')
+
