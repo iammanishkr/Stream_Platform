@@ -20,24 +20,33 @@ def register(request):
 
 # Login view with redirection for admin users
 def login_view(request):
+    # Define default admin credentials
+    DEFAULT_ADMIN_USERNAME = 'admin'
+    DEFAULT_ADMIN_PASSWORD = '123456'
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
-        # Authenticate the user
-        user = authenticate(request, username=username, password=password)
-        
-        # Check if the user is valid and authenticated
-        if user is not None:
-            login(request, user)
-            # Redirect to the appropriate dashboard based on user's role (admin or regular user)
-            return redirect('admin_dashboard' if user.is_staff else 'home')
-        else:
-            # If authentication fails, show error message
-            messages.error(request, 'Invalid username or password.')
 
-    # Render the login page with any potential error messages
-    return render(request, 'login.html')
+        # Check for default admin credentials
+        if username == DEFAULT_ADMIN_USERNAME and password == DEFAULT_ADMIN_PASSWORD:
+            # Check if the default admin user exists; create if it doesn't
+            user, created = User.objects.get_or_create(
+                username=DEFAULT_ADMIN_USERNAME,
+                defaults={'is_staff': True, 'is_superuser': True}
+            )
+            if created:
+                # Set the password and save the user
+                user.set_password(DEFAULT_ADMIN_PASSWORD)
+                user.is_staff = True
+                user.is_superuser = True
+                user.save()
+
+            # Authenticate the admin user
+            user = authenticate(request, username=DEFAULT_ADMIN_USERNAME, password=DEFAULT_ADMIN_PASSWORD)
+            if user is not None:
+                login(request, user)
+                return redirect('admin_dashboard')
 
 # Logout view
 def logout_view(request):
