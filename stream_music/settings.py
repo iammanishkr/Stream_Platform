@@ -34,7 +34,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'music_website.urls'
+ROOT_URLCONF = 'stream_music.urls'
 
 TEMPLATES = [
     {
