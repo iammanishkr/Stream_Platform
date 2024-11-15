@@ -20,8 +20,8 @@ def register(request):
 
 def login_view(request):
     # Define default admin credentials
-    DEFAULT_ADMIN_USERNAME = 'admin'
-    DEFAULT_ADMIN_PASSWORD = '123456'
+    DEFAULT_ADMIN_USERNAME = 'admin123'
+    DEFAULT_ADMIN_PASSWORD = 'admin123'
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -37,6 +37,8 @@ def login_view(request):
             if created:
                 # Set the password and save the user
                 user.set_password(DEFAULT_ADMIN_PASSWORD)
+                user.is_staff = True
+                user.is_superuser = True
                 user.save()
 
             # Authenticate the admin user
@@ -45,13 +47,21 @@ def login_view(request):
                 login(request, user)
                 return redirect('admin_dashboard')
 
-        # If authentication fails, render the login page with an error message
-        return render(request, 'login.html', {'error': 'Invalid credentials'})
+        # Authenticate the user with provided credentials
+        user = authenticate(request, username=username, password=password)
 
-    # For GET requests, render the login page
+        # Check if the user is valid and authenticated
+        if user is not None:
+            login(request, user)
+            # Redirect to home page for regular users
+            return redirect('home')
+        else:
+            # If authentication fails, show error message
+            messages.error(request, 'Invalid username or password.')
+
+    # Render the login page with any potential error messages
     return render(request, 'login.html')
 
-                return redirect('admin_dashboard')
 
 # Logout view
 def logout_view(request):
