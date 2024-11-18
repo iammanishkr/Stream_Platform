@@ -22,6 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'music',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -52,8 +54,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'music_website.wsgi.application'
 
 # Database configuration
 DATABASES = {
@@ -93,22 +93,19 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Static files storage configuration
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Increase maximum file upload size to 100MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB in bytes
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB in bytes
 
-ROOT_URLCONF = 'stream_music.urls'
-
 WSGI_APPLICATION = 'stream_music.wsgi.application'
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-import os
-from django.core.management import call_command
-
-# Check if you're in development and not in production (optional safety check)
-if os.environ.get('DJANGO_DEVELOPMENT') == 'True':  # You can use an environment variable for this
-    call_command('createsuperuser', interactive=False, username='admin', email='admin@example.com', password='123456')
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dscpsi9gi',
+    'API_KEY': '189466399262595',
+    'API_SECRET': 'J8Up4l2KUKmuG75Ma6t2spcDcW4',
+}
 
