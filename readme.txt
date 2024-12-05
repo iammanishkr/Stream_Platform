@@ -26,5 +26,7 @@ For admin login
 Username: admin123
 Password: admin123
 
+ScreenShots:
+https://drive.google.com/drive/folders/1wVM2zMnG1EK29gixYEUiKwb_BIwCB0Vx?usp=share_link
 
 
