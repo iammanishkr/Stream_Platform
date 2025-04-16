@@ -10,9 +10,10 @@ TEMP_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-^8s9h8e&_#byd%-ic9%e_0ted7j3pe5p-n3%z9)scnx%r9y(aa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['stream-platform.onrender.com']
+ALLOWED_HOSTS = ['stream-platform.onrender.com',
+                'iammanishkr.pythonanywhere.com']
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
