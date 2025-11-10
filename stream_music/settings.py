@@ -14,6 +14,12 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['stream-platform.onrender.com',
                 'iammanishkr.pythonanywhere.com']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://stream-platform.onrender.com',
+    'https://iammanishkr.pythonanywhere.com'
+]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
