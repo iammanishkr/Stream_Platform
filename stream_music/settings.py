@@ -65,8 +65,11 @@ TEMPLATES = [
 
 # Database configuration
 DATABASES = {
-"default": dj_database_url.parse("postgresql://beatstream_user:6vOVFLN1POLgmlOFBVAFuk0LdcG1m0DU@dpg-csr5qv52ng1s73f68b6g-a.oregon-postgres.render.com/beatstream")
-
+    "default": dj_database_url.parse(
+        "postgresql://beatstream_user:6vOVFLN1POLgmlOFBVAFuk0LdcG1m0DU@dpg-csr5qv52ng1s73f68b6g-a.oregon-postgres.render.com/beatstream",
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 # Password validation
